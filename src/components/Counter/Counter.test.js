@@ -3,12 +3,9 @@ import Enzyme, {shallow} from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 
 import Counter from './Counter';
+import { findByTestAttr } from '../../../test/testUtils'
 
 Enzyme.configure({adapter: new EnzymeAdapter()});
-
-beforeEach(() => {
-
-})
 
 const setup = (props={}, state=null) => {
   const wrapper = shallow(<Counter {...props}/>)
@@ -16,10 +13,6 @@ const setup = (props={}, state=null) => {
     wrapper.setState(state);
   }
   return wrapper;
-}
-
-const findByTestAttr = (wrapper, val) => {
-  return wrapper.find(`[data-test='${val}']`);
 }
 
 test('should render without error', () => {
