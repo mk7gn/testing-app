@@ -14,11 +14,11 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
-            <navbar>
+            <nav>
               <Link to="/">Dashboard  |  </Link>
               <Link to="/counter">Counter component  |  </Link>
               <Link to="/jotto">Jotto component  |  </Link>
-            </navbar>
+            </nav>
             <Route path="/" component={Dashboard} exact />
             <Route path="/counter" component={Counter} exact />
             <Route path="/jotto" component={Jotto} exact />
