@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
 
 import Counter from '../Counter/Counter';
+import Jotto from '../Jotto/Jotto';
 // import * as actions from '../actions';
 
 const Dashboard = () => <h2>Dashboard</h2>;
-const Jotto = () => <h2>Jotto</h2>;
 
 class App extends Component {
   render() {
