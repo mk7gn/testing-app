@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import Counter from '../Counter/Counter';
 import Jotto from '../Jotto/Jotto';
-import { actionTypes } from '../../actions';
+// import { actionTypes } from '../../actions';
 
 const Dashboard = () => <h2>Dashboard</h2>;
 
@@ -29,5 +28,5 @@ class App extends Component {
   }
 }
 
-// export default App;
-export default connect(null, actionTypes)(App);
+export default App;
+// export default connect(null, actionTypes)(App);

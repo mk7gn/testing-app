@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import GuessedWords from './components/GuessedWords';
 import Congrats from './components/Congrats';
+import { actionTypes } from '../../actions';
 
 class Jotto extends Component {
   render() {
@@ -17,4 +20,4 @@ class Jotto extends Component {
   }
 }
 
-export default Jotto;
+export default connect(null, actionTypes)(Jotto);
