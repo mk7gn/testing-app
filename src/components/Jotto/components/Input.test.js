@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Input from './Input';
+import Input, { UnconnectedInput } from './Input';
 import { findByTestAttr } from '../../../../test/testUtils';
 import { storeFactory } from '../../../../test/testUtils';
 
@@ -63,10 +63,6 @@ describe('render', () => {
   });
 });
 
-describe('update state', () => {
-
-});
-
 describe('redux-props', () => {
   test('has success piece of state as prop', () => {
     const success = true;
@@ -83,3 +79,27 @@ describe('redux-props', () => {
     expect(guessWordProp).toBeInstanceOf(Function);
   });
 });
+
+describe('`guessWord` action creator call', () => {
+  let guessWordMock, wrapper, submitButton;
+  const guessedWord = 'train';
+  beforeEach(() => {
+    guessWordMock = jest.fn();
+    wrapper = shallow(<UnconnectedInput guessWord={guessWordMock} />);
+    submitButton = findByTestAttr(wrapper, 'submit-button');
+    wrapper.setState({ currentGuess: guessedWord });
+    submitButton.simulate('click', {preventDefault() {}});
+  })
+
+  test('`guessWord` runs on submit form', () => {
+    expect(guessWordMock).toHaveBeenCalled();
+  });
+
+  test('`guessWord` calls with input value as argument', () => {
+    expect(guessWordMock).toHaveBeenCalledWith(guessedWord);
+  });
+
+  test('should clear input box value after submit', () => {
+    expect(wrapper.state().currentGuess).toBe('');
+  })
+})
