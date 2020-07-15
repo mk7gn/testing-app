@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import Jotto from './Jotto';
+import Jotto, { UnconnectedJotto } from './Jotto';
 import { storeFactory, findByTestAttr } from '../../../test/testUtils';
 
 const setup = (initialState = {}) => {
@@ -54,4 +54,20 @@ describe('', () => {
     expect(getSecretWordProp).toBeInstanceOf(Function);
   })
 });
+
+test('should run `getSecretWord` on component mount', () => {
+  const getSecretWordMock = jest.fn();
+  const props = {
+    getSecretWord: getSecretWordMock,
+    success: false,
+    guessedWords: []
+  }
+  const wrapper = shallow(<UnconnectedJotto {...props} />);
+
+  wrapper.instance().componentDidMount();
+
+  const getSecretWordMockCallCount = getSecretWordMock.mock.calls.length;
+
+  expect(getSecretWordMockCallCount).toBe(1);
+})
 
